@@ -11,186 +11,72 @@ package faces;
  */
 public class items {
 
-    private int productId;
-    private int manufacturerId;
-    private String productCode;
-    private double purchaseCost;
-    private int quantityOnHand;
-    private double markup;
-    private String available;
-    private String description;
-
-    /**
+   private int item_id;
+   private String item_name;
+   private String description;
+   private int item_price;
+   private int user_id;
+   
+   
+     /**
      * Default constructor
      */
     public items() {
 
     }
 
-    /**
-     *
-     * @param productId
-     * @param manufacturerId
-     * @param productCode
-     * @param purchaseCost
-     * @param quantityOnHand
-     * @param markup
-     * @param available
-     * @param description
-     */
-    public items(int productId, int manufacturerId, String productCode, double purchaseCost, int quantityOnHand, double markup, String available, String description) {
-        this.productId = productId;
-        this.manufacturerId = manufacturerId;
-        this.productCode = productCode;
-        this.purchaseCost = purchaseCost;
-        this.quantityOnHand = quantityOnHand;
-        this.markup = markup;
-        this.available = available;
+    public items(int item_id, String item_name, String description, int item_price, int user_id) {
+        this.item_id = item_id;
+        this.item_name = item_name;
         this.description = description;
+        this.item_price = item_price;
+        this.user_id = user_id;
+    }
+    
+    
+
+    public int getItem_id() {
+        return item_id;
     }
 
-    /**
-     * Retrieve the Product Id
-     *
-     * @return the Product Id
-     */
-    public int getProductId() {
-        return productId;
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
     }
 
-    /**
-     * Set the Product Id
-     *
-     * @param productId
-     */
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public String getItem_name() {
+        return item_name;
     }
 
-    /**
-     * Retrieve the Manufacturer Id
-     *
-     * @return the Manufacturer Id
-     */
-    public int getManufacturerId() {
-        return manufacturerId;
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
     }
 
-    /**
-     * Set the Manufacturer Id
-     *
-     * @param manufacturerId
-     */
-    public void setManufacturerId(int manufacturerId) {
-        this.manufacturerId = manufacturerId;
-    }
-
-    /**
-     * Retrieve the Product Code
-     *
-     * @return the Product Code
-     */
-    public String getProductCode() {
-        return productCode;
-    }
-
-    /**
-     * Set the Product Code
-     *
-     * @param productCode
-     */
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
-    /**
-     * Retrieve the Purchase Cost
-     *
-     * @return the Purchase Cost
-     */
-    public double getPurchaseCost() {
-        return purchaseCost;
-    }
-
-    /**
-     * Set the Purchase Cost
-     *
-     * @param purchaseCost
-     */
-    public void setPurchaseCost(double purchaseCost) {
-        this.purchaseCost = purchaseCost;
-    }
-
-    /**
-     * Retrieve the Quantity On Hand
-     *
-     * @return the Quantity On Hand
-     */
-    public int getQuantityOnHand() {
-        return quantityOnHand;
-    }
-
-    /**
-     * Set the Quantity On Hand
-     *
-     * @param quantityOnHand
-     */
-    public void setQuantityOnHand(int quantityOnHand) {
-        this.quantityOnHand = quantityOnHand;
-    }
-
-    /**
-     * Retrieve the markup
-     *
-     * @return the markup
-     */
-    public double getMarkup() {
-        return markup;
-    }
-
-    /**
-     * Set the markup
-     *
-     * @param markup
-     */
-    public void setMarkup(double markup) {
-        this.markup = markup;
-    }
-
-    /**
-     * Retrieve the Available
-     *
-     * @return the Available
-     */
-    public String getAvailable() {
-        return available;
-    }
-
-    /**
-     * Set the Available
-     *
-     * @param available
-     */
-    public void setAvailable(String available) {
-        this.available = available;
-    }
-
-    /**
-     * Retrieve the Description
-     *
-     * @return the Description
-     */
     public String getDescription() {
         return description;
     }
 
-    /**
-     * Set the Description
-     *
-     * @param description
-     */
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getItem_price() {
+        return item_price;
+    }
+
+    public void setItem_price(int item_price) {
+        this.item_price = item_price;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+  
+
+    
 
 }
