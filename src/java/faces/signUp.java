@@ -27,7 +27,7 @@ public class signUp {
         
     }
     
-    public String signUp(String email, String firstName, String lastName, String password){
+    public String signUp(){
         String nextPage = "SignUp";
         Date today1 = new Date();
         java.sql.Date today2 = new java.sql.Date(today1.getTime());
