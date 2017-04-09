@@ -7,9 +7,9 @@
     </h:head>
     <h:body>
         <h:form>
-            <p>Username: <h:inputText value=""/></p>
-            <p>Password: <h:inputSecret value=""/></p>
-            <h:commandButton value="Log In" action="SignUp"/>
+            <p>Username or Email: <h:inputText value="#{login.email}"/></p>
+            <p>Password: <h:inputSecret value="#{login.password}"/></p>
+            <h:commandButton value="Log In" action="#{login.login()}"/>
             <h:commandButton value="Return" action="index"/>
             </h:form>
     </h:body>
