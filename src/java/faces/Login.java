@@ -5,10 +5,70 @@
  */
 package faces;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
- * @author c0687631
+ * @author c0690651
  */
+@ManagedBean
+@SessionScoped
 public class Login {
+
+    private String email;
+    private String password;
+    private boolean loggedIn;
+    private user currentUser;
+
+    /**
+     * Default constructor
+     */
+    public Login(){
+        
+    }
     
+    public String login() {
+        String nextPage = "LogIn";
+        for(user u : userController.getUsers()){
+            if(email.equals(u.getEmail()) || email.equals(u.getUser_name()) && password.equals(u.getPassword())){
+                loggedIn = true;
+                currentUser = u;
+                nextPage = "index";
+            }
+        }
+        return nextPage;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    public user getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(user currentUser) {
+        this.currentUser = currentUser;
+    }
 }
