@@ -21,9 +21,11 @@ import javax.faces.bean.ManagedBean;
 @ApplicationScoped
 public class userController {
     private static List<user> users = new ArrayList<>();
+    private static userController instance;
     
     public userController(){
         getUserFromDB();
+        instance = this;
     }
     
     public static void getUserFromDB(){
@@ -51,8 +53,12 @@ public class userController {
         }
     }
 
-    public List<user> getUsers() {
+    public static List<user> getUsers() {
         return users;
+    }
+
+    public static userController getInstance() {
+        return instance;
     }
     
     public user getUserById(int id){
