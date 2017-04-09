@@ -39,7 +39,7 @@ public class userController {
                     rs.getString("user_name"), 
                     rs.getString("email"), 
                     rs.getString("password"), 
-                    rs.getDate("create_date"), 
+                    rs.getDate("date_created"), 
                     rs.getInt("user_type"),
                     rs.getString("first_name"),
                     rs.getString("last_name")
