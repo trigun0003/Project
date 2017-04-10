@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package faces;
+package faces.controllers;
 
+import faces.controllers.userController;
+import faces.entities.user;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 

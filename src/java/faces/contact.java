@@ -5,6 +5,7 @@
  */
 package faces;
 
+import faces.conection.DBUtils;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

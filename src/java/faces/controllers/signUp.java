@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package faces;
+package faces.controllers;
 
+import faces.controllers.userController;
+import faces.conection.DBUtils;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
