@@ -5,6 +5,9 @@
  */
 package faces.entities;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+
 /**
  *
  * @author c0690651
@@ -75,7 +78,15 @@ public class items {
         this.user_id = user_id;
     }
 
-  
+  public JsonObject toJson() {
+        return Json.createObjectBuilder()
+                .add("item_id", item_id)
+                .add("item_name", item_name)
+                .add("description", description)
+                .add("item_price", item_price)
+                .add("user_id", user_id)
+                .build();
+    }
 
     
 
