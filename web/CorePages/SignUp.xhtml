@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>BNBH E-Shopping </title>
+        <link href="../Content/bootstrap.css" rel="stylesheet" />
+        <link href="../Content/bootstrap-theme.css" rel="stylesheet" />
+        <link href="../CSS/mainStyle.css" rel="stylesheet" />
+        <link href="../CSS/AdminLTE.css" rel="stylesheet" />
+        <link href="../CSS/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="../CSS/hover.css" rel="stylesheet" />
+        <script src="../Scripts/jquery-2.1.4.js"></script>
+        <script src="../Scripts/bootstrap.js"></script>
+        <style type="text/css">
+            .carousel-inner > .item > img,
+            .carousel-inner > .item > a > img {
+                width: 100%;
+                height: 100%;
+                margin: auto;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div style="width:100%;height:50px;">
+        <nav class="navbar  navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand  left" href="Index.html">BNBH E-Shopping</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Product_1</a></li>
+                        <li><a href="#">Product_2 </a></li>
+                        <li><a href="#">Product_3</a></li>
+                        <li><a href="ContactUs.html">Contact Us</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="SignUp.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="LogIn.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+        
+        <div style="width:100%;clear:both; background:fixed repeat url(../Images/vintage_speckles.png)">
+        <div class="container">
+            <div id="signupbox" style="margin-top: 50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">Sign Up</div>
+                        <div style="float: right; font-size: 85%; position: relative; top: -10px"><a id="signinlink" href="LogIn.html" >Log In</a></div>
+                    </div>
+                    <div class="panel-body">
+                        <h:form id="signupform" class="form-horizontal" role="form">
+                            <div id="signupalert" style="display: none" class="alert alert-danger">
+                                <p>Error:</p>
+                                <span></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-md-3 control-label">Email</label>
+                                <div class="col-md-9">
+                                    <h:inputText class="form-control"  value="#{signUp.email}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstname" class="col-md-3 control-label">First Name</label>
+                                <div class="col-md-9">
+                                    <h:inputText  class="form-control"  value="#{signUp.firstName}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                                <div class="col-md-9">
+                                    <h:inputText class="form-control" value="#{signUp.lastName}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-3 control-label">Password</label>
+                                <div class="col-md-9">
+                                    <h:inputText class="form-control" value="#{signUp.password}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                &nbsp;
+                            </div>
+
+                            <div class="form-group">
+                                <!-- Button -->
+                                <div class="col-md-offset-3 col-md-9">
+                                    <h:commandLink id="btn-signup" type="submit" class="btn btn-info" action="#{signUp.signUp()}" ><i class="fa fa-facebook"></i> Sign Up</h:commandLink>
+                                    <button id="btn-fbsign"  type="submit" action="#{signUp.signUp()}" class="btn btn-primary"><i class="fa fa-facebook"></i> Sign Up</button>
+                                    <span style="margin-left: 8px;">or</span>
+                                    <button id="btn-fbsignup" style="margin-left:10px;" type="button" class="btn btn-primary"><i class="fa fa-facebook"></i> Sign Up with Facebook</button>
+                                </div>
+                            </div>
+
+                            <!--<div style="border-top: 1px solid #999; padding-top: 20px" class="form-group">
+                                <div class="col-md-offset-3 col-md-9">
+                                </div>
+                            </div>-->
+
+
+                            <div class="form-group">
+                                <div class="col-md-12 control">
+                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                        Already have an account!
+                                        <a href="SignUp.aspx"> Log in Here</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </h:form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+        
+        <footer class="navbar-my" style="height:100px; width:100%;">
+        </footer>
+    </h:body>
+</html>
+
