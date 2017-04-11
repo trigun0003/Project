@@ -50,7 +50,6 @@ public class contactTest {
     
     @Test
     public void testClear() {
-        System.out.println("clear");
         contact instance = new contact();
         instance.setEmail("");
         instance.setFirstName("");
