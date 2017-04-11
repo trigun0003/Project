@@ -52,15 +52,15 @@ public class contact {
                 pstmt.setString(5, message);
                 pstmt.setDate(6, today);
                 pstmt.executeUpdate();
+                firstName = null;
+                lastName = null;
+                email = null;
+                phone = null;
+                message = null;
             } catch (SQLException ex) {
                 Logger.getLogger(contact.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        firstName = null;
-        lastName = null;
-        email = null;
-        phone = null;
-        message = null;
 
     }
 
@@ -102,6 +102,17 @@ public class contact {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String clear() {
+        
+        firstName = null;
+        lastName = null;
+        email = null;
+        phone = null;
+        message = null;
+        
+        return "ContactUs";
     }
 
 }
