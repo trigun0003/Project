@@ -7,7 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <head>
+    <h:head>
         <title>BNBH E-Shopping </title>
         <link href="../Content/bootstrap.css" rel="stylesheet" />
         <link href="../Content/bootstrap-theme.css" rel="stylesheet" />
@@ -35,8 +35,8 @@ and open the template in the editor.
                 padding: 10px;
             }
         </style>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <div style="width:100%;height:50px;">
             <nav class="navbar  navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
@@ -72,48 +72,48 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-6">
                     <div class="well well-sm">
-                        <form class="form-horizontal" method="post">
+                        <h:form class="form-horizontal">
                             <fieldset>
                                 <legend class="text-center header"><span class="glyphicon glyphicon-list-alt"></span> Contact us</legend>
                                 <br/>
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <input type="text" id="fname" placeholder="First Name" class="form-control"/>
+                                        <h:inputText id="fname" class="form-control" value="#{contact.firstName}"/>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <input type="text" id="lname" placeholder="Last Name" class="form-control"/>
+                                        <h:inputText  id="lname" class="form-control" value="#{contact.lastName}"/>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <input type="text" id="email" placeholder="Email Address" class="form-control"/>
+                                        <h:inputText id="email" class="form-control" value="#{contact.email}"/>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <input type="text" id="phone" placeholder="Phone" class="form-control"/>
+                                        <h:inputText  id="phone" class="form-control" value="#{contact.phone}"/>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <textarea rows="3" id="message" placeholder="Enter your massage for us here. We will get back to you soon" class="form-control" ></textarea>
+                                        <h:inputTextarea rows="3" id="message" class="form-control" value="#{contact.message}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-md-12 text-center" style="margin-top:10px;">
-                                        <input type="button" id="btnsubmit" class="btn btn-primary btn-lg" value="SUBMIT"></input>
-                                        <input type="button" id="btnClear" class="btn btn-primary btn-lg" value="CLEAR"></input>
+                                        <h:commandButton id="btnsubmit" class="btn btn-primary btn-lg" value="SUBMIT"  action="#{contact.submit()}"/>
+                                        <h:commandButton id="btnClear" class="btn btn-primary btn-lg" value="CLEAR" action="#{contact.clear()}"/>
                                     </div>
                                 </div>
                             </fieldset>
-                        </form>
+                        </h:form>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -163,5 +163,5 @@ and open the template in the editor.
         
         <footer class="navbar-my" style="height:100px; width:100%;">
         </footer>
-    </body>
+    </h:body>
 </html>
