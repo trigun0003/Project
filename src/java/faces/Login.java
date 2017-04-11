@@ -20,19 +20,23 @@ public class Login {
     private String password;
     private boolean loggedIn;
     private user currentUser;
-    private userController users = new userController();
+    private userController users;
 
     /**
      * Default constructor
      */
     public Login(){
-        
+        email = null;
+        password = null;
+        loggedIn = false;
+        currentUser = new user();
+        users = new userController();
     }
     
     public String login() {
         String nextPage = "LogIn";
         for(user u : users.getUsers()){
-            if(email.equals(u.getEmail()) || email.equals(u.getUser_name()) && password.equals(u.getPassword())){
+            if((email.equals(u.getEmail()) || email.equals(u.getUser_name())) && password.equals(u.getPassword())){
                 loggedIn = true;
                 currentUser = u;
                 nextPage = "index";
