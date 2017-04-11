@@ -5,6 +5,9 @@
  */
 package faces.entities;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.json.Json;
 import javax.json.JsonObject;
 
@@ -49,6 +52,8 @@ public class orders {
     }
 
     public void setOrder_date(String order_date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        dateFormat.format(order_date);
         this.order_date = order_date;
     }
     
