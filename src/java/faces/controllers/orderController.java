@@ -28,7 +28,8 @@ import javax.json.JsonObject;
  *
  * @author c0687631
  */
-
+@Named
+@ApplicationScoped
 public class orderController {
 
     private List<orders> orderdata;
