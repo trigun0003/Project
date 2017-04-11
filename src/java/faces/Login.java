@@ -20,6 +20,7 @@ public class Login {
     private String password;
     private boolean loggedIn;
     private user currentUser;
+    private userController users = new userController();
 
     /**
      * Default constructor
@@ -30,7 +31,7 @@ public class Login {
     
     public String login() {
         String nextPage = "LogIn";
-        for(user u : userController.getUsers()){
+        for(user u : users.getUsers()){
             if(email.equals(u.getEmail()) || email.equals(u.getUser_name()) && password.equals(u.getPassword())){
                 loggedIn = true;
                 currentUser = u;
