@@ -5,14 +5,20 @@
  */
 package faces;
 
+import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * REST Web Service
@@ -22,32 +28,57 @@ import javax.ws.rs.core.MediaType;
 @Path("/orders")
 public class ordersRest {
 
-    @Context
-    private UriInfo context;
+    @Inject
+    private orderController orderController;
 
-    /**
-     * Creates a new instance of ordersRest
-     */
-    public ordersRest() {
-    }
+    //private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
-    /**
-     * Retrieves representation of an instance of faces.ordersRest
-     * @return an instance of java.lang.String
-     */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    @Produces("application/json")
+    public Response getAll() {
+        return Response.ok(orderController.getAllJson()).build();
     }
 
-    /**
-     * PUT method for updating or creating an instance of ordersRest
-     * @param content representation for the resource
-     */
+    @GET
+    @Path("{id}")
+    @Produces("application/json")
+    public Response getById(@PathParam("id") int id) {
+        JsonObject json = orderController.getByIdJason(id);
+        if (json != null) {
+            return Response.ok(json).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
+
+
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response add(JsonObject json) {
+        return Response.ok(orderController.addJson(json)).build();
+    }
+
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    @Path("{id}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response edit(@PathParam("id") int id, JsonObject json) {
+        JsonObject jsonWithId = orderController.editJson(id, json);
+        if (jsonWithId != null) {
+            return Response.ok(jsonWithId).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response del(@PathParam("id") int id) {
+        if (orderController.deleteById(id)) {
+            return Response.ok().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 }
