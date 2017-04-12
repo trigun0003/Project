@@ -58,10 +58,9 @@ public class orders {
         return order_date;
     }
 
-    public void setOrder_date(String order_date) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        dateFormat.format(order_date);
-        this.order_date = order_date;
+    public void setOrder_date(Date order_date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        this.order_date = dateFormat.format(order_date);
     }
     
     public JsonObject toJson() {
