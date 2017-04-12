@@ -85,7 +85,7 @@ public class tagController {
             if (t.getTag_id()<= 0) {
                 sql = "INSERT INTO tags (TAG_NAME ) VALUES (?)";
             } else {
-                sql = "UPDATE items SET TAG_NAME = ? WHERE TAG_NAME = ?";
+                sql = "UPDATE tags SET TAG_NAME = ? WHERE TAG_NAME = ?";
             }
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -108,7 +108,7 @@ public class tagController {
         try {
 
             Connection conn = DBUtils.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM items WHERE ITEM_ID = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM tags WHERE tag_id = ?");
             pstmt.setInt(1, t.getTag_id());
             pstmt.executeUpdate();
             conn.close();
