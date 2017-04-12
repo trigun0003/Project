@@ -30,6 +30,13 @@ public class orders {
         this.item_id = item_id;
         this.order_date = order_date;
     }
+    
+    public orders(JsonObject json) {        
+        item_id = json.getInt("ITEM_ID", 0);
+        order_number = json.getInt("ORDER_NUMBER", 0);
+        order_date = json.getString("ORDER_DATE", "");
+    }
+    
 
     public int getOrder_number() {
         return order_number;

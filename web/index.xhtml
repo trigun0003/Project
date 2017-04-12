@@ -8,29 +8,35 @@ and open the template in the editor.
 <html  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
+    <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <h:form>
-            <h:dataTable value="#{itemController.itemdata}" var="i"> 
+           <h:dataTable value="#{itemController.itemdata}" var="p">
             <h:column>
-                <f:facet name="header"><h2>Name</h2></f:facet>
-                    #{i.item_id}
+                <f:facet name="header">Transaction ID</f:facet>
+                  #{p.item_id} 
             </h:column>
-           
             <h:column>
-                <f:facet name="header"><h2>Name</h2></f:facet>
-                    #{i.item_name}
+                <f:facet name="header">Balance</f:facet>
+                    #{p.item_name}
+            </h:column>            
+            <h:column>
+                <f:facet name="header">Place</f:facet>
+                    #{p.description}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Amount</f:facet>
+                    #{p.item_price}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Date</f:facet>
+                    #{p.user_id}
             </h:column>
             
-            <h:column>
-                <f:facet name="header"><h2>Vendor Id</h2></f:facet>
-                    #{i.user_id}
-            </h:column>
-      
         </h:dataTable>
-        </h:form>
-    </body>
+            </h:form>
+    </h:body>
 </html>

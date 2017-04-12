@@ -115,6 +115,13 @@ public class orderController {
         }
         return null;
     }
+    
+    public JsonObject addJson(JsonObject json) {
+        orders o = new orders(json);
+        persistToDB(o);
+        orderdata.add(o);
+        return o.toJson();
+    }
 
     public JsonObject getByIdJason(int id) {
         orders o = getById(id);
@@ -149,3 +156,4 @@ public class orderController {
     }
 
 }
+
