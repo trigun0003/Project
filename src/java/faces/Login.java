@@ -5,66 +5,75 @@
  */
 package faces;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
  * @author c0690651
  */
+@ManagedBean
+@SessionScoped
 public class Login {
 
-    private String userName;
+    private String email;
     private String password;
+    private boolean loggedIn;
+    private user currentUser;
+    private userController users;
 
     /**
      * Default constructor
      */
-    public Login() {
-
+    public Login(){
+        email = null;
+        password = null;
+        loggedIn = false;
+        currentUser = new user();
+        users = new userController();
+    }
+    
+    public String login() {
+        String nextPage = "LogIn";
+        for(user u : users.getUsers()){
+            if((email.equals(u.getEmail()) || email.equals(u.getUser_name())) && password.equals(u.getPassword())){
+                loggedIn = true;
+                currentUser = u;
+                nextPage = "index";
+            }
+        }
+        return nextPage;
     }
 
-    /**
-     *
-     * @param userName
-     * @param password
-     */
-    public Login(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public String getEmail() {
+        return email;
     }
 
-    /**
-     * Retrieve the User Name
-     *
-     * @return the User Name
-     */
-    public String getUserName() {
-        return userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    /**
-     * Set the User Name
-     *
-     * @param userName
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    /**
-     * Retrieve the Password
-     *
-     * @return the Password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * Set the Password
-     *
-     * @param password
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    public user getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(user currentUser) {
+        this.currentUser = currentUser;
+    }
 }
