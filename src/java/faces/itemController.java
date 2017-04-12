@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import javax.json.JsonObject;
 
 /**
  *
@@ -49,6 +50,26 @@ public class itemController {
         } catch (SQLException ex){
             Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    Object getAllJson() {
+        throw new UnsupportedOperationException("HEBR HEBER HEBER HBERH HERBER HEBRHEBRHEBRHEBRH."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    JsonObject getByIdJson(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Object addJson(JsonObject json) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    JsonObject editJson(int id, JsonObject json) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    boolean deleteById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
