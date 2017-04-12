@@ -61,7 +61,7 @@ public class itemController {
         try {itemdata = new ArrayList<>();
             Connection con = DBUtils.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select ITEM_ID, ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, USER_ID from items");
+            ResultSet rs = stmt.executeQuery("Select ITEM_ID, ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, USER_ID, TAG_ID from items");
             
             while(rs.next()){
                items us = new items(
@@ -69,7 +69,8 @@ public class itemController {
                        rs.getString("ITEM_NAME"),
                        rs.getString("ITEM_DESCRIPTION"),
                        rs.getInt("ITEM_PRICE"),
-                       rs.getInt("USER_ID")
+                       rs.getInt("USER_ID"),
+                       rs.getInt("TAG_ID")
                );
                 itemdata.add(us);
                 System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -167,6 +168,7 @@ public class itemController {
         i.setUser_id(json.getInt("USER_ID", 0));
         i.setItem_name(json.getString("ITEM_NAME", ""));
         i.setItem_price(json.getInt("ITEM_PRICE", 0));
+        i.setTag_id(json.getInt("TAG_ID"));
         persistToDB(i);
         return i.toJson();
     }
