@@ -19,7 +19,7 @@ and open the template in the editor.
         <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="assets/scripts/siminta.js"></script>
     </h:head>
-    <h:body>
+    <body>
         <div id="wrapper">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
                 <!-- navbar-header -->
@@ -132,68 +132,79 @@ and open the template in the editor.
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="page-header">Manage Products</h2>
+                        <h2 class="page-header">Make Order</h2>
                     </div>
-
                 </div>
-
-                <div class="row">
+                <div class="row col-lg-6">
                     <h:form>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Fabric List
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="txtItem">Item ID</label>
+                            <div class="controls">
+                                <h:inputText id="txtItem" class="form-control" value=""  h:placeholder="Item ID" />
                             </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped table-responsive">
-                                        <tr>
-                                            <th>Product ID</th>
-                                            <th>Category Name</th>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th>Description</th>
-                                            <th>Edit/Delete</th>
-                                        </tr>
-                                        <tr>
-                                            <th>1</th>
-                                            <td>Toys</td>
-                                            <td>Duck</td>
-                                            <td>29</td>
-                                            <td>Yellow color with Blue shade and black eyes duck.</td>
-                                            <td><h:commandLink id="btnsave1" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-edit" ></i> Edit</h:commandLink>
-                                                <h:commandLink id="btncancel1" type="submit" class="btn btn-primary btn-group-lg"><i class="fa fa-times"></i> Delete</h:commandLink>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>2</th>
-                                            <td>Toys</td>
-                                            <td>Teddy Bear</td>
-                                            <td>69</td>
-                                            <td>Blue color with Black shade and black eyes Bear.</td>
-                                            <td><h:commandLink id="btnsave2" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-edit" ></i> Edit</h:commandLink>
-                                                <h:commandLink id="btncancel2" type="submit" class="btn btn-primary btn-group-lg"><i class="fa fa-times"></i> Delete</h:commandLink>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>3</th>
-                                            <td>Electronic</td>
-                                            <td>Smart Phone</td>
-                                            <td>299</td>
-                                            <td>2 GB RAM and wide screen with water resist.</td>
-                                            <td><h:commandLink id="btnsave3" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-edit" ></i> Edit</h:commandLink>
-                                                <h:commandLink id="btncancel3" type="submit" class="btn btn-primary btn-group-lg"><i class="fa fa-times"></i> Delete</h:commandLink>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="txtQuantity">Quantity</label>
+                            <div class="controls">
+                                <h:inputText id="txtQuantity" class="form-control" value=""  h:placeholder="Quantity" />
+                            </div>
+                        </div>
+                        <br />
 
+                        <!-- Button -->
+                        <div class="control-group">
+                            <label class="control-label"></label>
+                            <div class="controls">
+                                <h:commandLink id="btnsave" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-save" ></i> SAVE</h:commandLink>
+                                <h:commandLink id="btncancel" type="submit" class="btn btn-primary btn-group-lg"><i class="fa fa-times"></i> CANCEL</h:commandLink>
                             </div>
                         </div>
                     </h:form>
-                    <!--End Advanced Tables -->
+                </div>
 
+                <div class="row col-lg-8">
+                    <br />
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Order List
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                
+                                <table class="table table-bordered table-hover table-striped table-responsive">
+                                    <tr>
+                                        <th>Order Number</th>
+                                        <th>Item ID</th>
+                                        <th>Date</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                    <tr>
+                                        <th>001</th>
+                                        <td>201</td>
+                                        <td>04/10/17</td>
+                                        <td>12</td>
+                                    </tr>
+                                    <tr>
+                                        <th>002</th>
+                                        <td>202</td>
+                                        <td>04/11/17</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <th>003</th>
+                                        <td>203</td>
+                                        <td>04/12/17</td>
+                                        <td>5</td>
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
-    </h:body>
+    </body>
 </html>
