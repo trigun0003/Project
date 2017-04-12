@@ -13,7 +13,7 @@ import javax.ws.rs.core.Application;
  *
  * @author c0687631
  */
-@javax.ws.rs.ApplicationPath("faces")
+@javax.ws.rs.ApplicationPath("r")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -30,7 +30,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(faces.userRest.class);
+        resources.add(faces.UsersRest.class);
+        resources.add(faces.itemRest.class);
     }
     
 }

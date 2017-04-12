@@ -5,6 +5,7 @@
  */
 package faces;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,12 @@ import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+
 /**
  *
  * @author Heber
  */
+
 @ManagedBean
 @ApplicationScoped
 public class userController {
@@ -69,5 +72,6 @@ public class userController {
         }
         return null;
     }
+
     
 }

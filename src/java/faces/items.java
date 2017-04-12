@@ -5,6 +5,10 @@
  */
 package faces;
 
+import java.io.File;
+import javax.json.Json;
+import javax.json.JsonObject;
+
 /**
  *
  * @author c0690651
@@ -16,7 +20,8 @@ public class items {
    private String description;
    private int item_price;
    private int user_id;
-   
+   private File picture;
+
    
      /**
      * Default constructor
@@ -31,6 +36,15 @@ public class items {
         this.description = description;
         this.item_price = item_price;
         this.user_id = user_id;
+    }
+    
+    public items(int item_id, String item_name, String description, int item_price, int user_id, File picture) {
+        this.item_id = item_id;
+        this.item_name = item_name;
+        this.description = description;
+        this.item_price = item_price;
+        this.user_id = user_id;
+        this.picture = picture;
     }
     
     
@@ -75,8 +89,26 @@ public class items {
         this.user_id = user_id;
     }
 
-  
-
     
+     public File getPicture() {
+        return picture;
+    }
+
+    public void setPicture(File picture) {
+        this.picture = picture;
+    }
+  
+    public JsonObject toJson() {
+        return Json.createObjectBuilder()
+                .add("item_id", item_id)
+                .add("item_name", item_name)
+                .add("description", description)
+                .add("item_price", item_price)
+                .add("user_id", user_id)
+                .add("picture", picture.toString())
+                .build();
+    }
+    
+   
 
 }
