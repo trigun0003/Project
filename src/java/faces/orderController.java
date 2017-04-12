@@ -126,6 +126,13 @@ public class orderController {
 
     }
     
+    public JsonObject addJson(JsonObject json) {
+        orders o = new orders(json);
+        persistToDB(o);
+        orderdata.add(o);
+        return o.toJson();
+    }
+    
     public JsonObject editJson(int id, JsonObject json)
     {
         orders o = getById(id);
