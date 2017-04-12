@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -24,6 +26,9 @@ import javax.json.JsonObject;
  *
  * @author c0687631
  */
+
+@Named
+@ApplicationScoped
 public class paymentController {
     
     private List<payments> paymentData;
