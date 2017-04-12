@@ -6,6 +6,8 @@
 package faces;
 
 import java.sql.Date;
+import javax.json.Json;
+import javax.json.JsonObject;
 
 /**
  *
@@ -99,5 +101,20 @@ public class user {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
+    
+    public JsonObject toJson() {
+        return Json.createObjectBuilder()
+                .add("user_id", user_id)
+                .add("user_name", user_name)
+                .add("email", email)
+                .add("password", password)
+                .add("date_created",date_created.toString())
+                .add("user_type",user_type)
+                .add("first_name",first_name)
+                .add("last_name",last_name)
+                .build();
+    }
+    
+    
                        
 }
