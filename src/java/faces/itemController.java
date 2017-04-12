@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
@@ -34,6 +35,7 @@ public class itemController {
     
 
     private List<items> itemdata;
+    private items itemobj;
     //private items item;
 
     public List<items> getItemdata() {
@@ -44,7 +46,9 @@ public class itemController {
         this.itemdata = itemdata;
     }
     
-    
+    public items getItemobj(){
+        return itemobj;
+    }
     
     public itemController() {
            getItems();
@@ -52,28 +56,28 @@ public class itemController {
     }
 
     private void getItems() {
-        Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, "HEBER TESTEERRRRR");
-        try {
-            if (itemdata == null) {
-                itemdata = new ArrayList();
-            }
-            Connection connection = DBUtils.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultset = statement.executeQuery("Select * from items");
-            while (resultset.next()) {
-                items us = new items();
-                us.setItem_id(resultset.getInt("ITEM_ID"));
-                us.setItem_name(resultset.getString("ITEM_NAME"));
-                us.setDescription(resultset.getString("ITEM_DESCREPTION"));
-                us.setItem_price(resultset.getInt("ITEM_PRICE"));
-                us.setUser_id(resultset.getInt("USER_ID"));
-                //Blob blob = resultset.getBlob("PICTURE");
-                //us.setPicture((File) blob);
+        itemobj = new items();
+        
+        try {itemdata = new ArrayList<>();
+            Connection con = DBUtils.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("Select ITEM_ID, ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, USER_ID from items");
+            
+            while(rs.next()){
+               items us = new items(
+                       rs.getInt("ITEM_ID"),
+                       rs.getString("ITEM_NAME"),
+                       rs.getString("ITEM_DESCRIPTION"),
+                       rs.getInt("ITEM_PRICE"),
+                       rs.getInt("USER_ID")
+               );
                 itemdata.add(us);
+                System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             }
-            connection.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, ex);
+            itemdata = new ArrayList<>();
         }
     }
 
