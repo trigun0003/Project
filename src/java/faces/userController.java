@@ -51,6 +51,35 @@ public class userController {
             );
             users.add(u);
         }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(userController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void persistToDb(user u) {
+        try {
+            String sql = "";
+            Connection conn = DBUtils.getConnection();
+            if (u.getUser_id() <= 0) {
+                sql = "INSERT INTO users (USER_NAME, EMAIL, PASSWORD, USER_TYPE, DATE_CREATED, FIRST_NAME, LAST_NAME) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            } else {
+                sql = "UPDATE message SET USER_NAME = ?, EMAIL= ?, PASSWORD = ?, USER_TYPE = ?, DATE_CREATED = ?, FIRST_NAME = ?, LAST_NAME = ?  WHERE USER_ID = ?";
+            }
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,u.getUser_name() );
+            pstmt.setString(2, u.getEmail() );
+            pstmt.setString(3, u.getPassword());
+            pstmt.setInt(4, u.getUser_type());
+            pstmt.setDate(5, u.getDate_created());
+            pstmt.setString(6, u.getFirst_name() );
+            pstmt.setString(7, u.getLast_name() );
+            if (u.getUser_id() > 0) {
+                pstmt.setInt(8, u.getUser_id());
+            }
+            pstmt.executeUpdate();
+   
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(userController.class.getName()).log(Level.SEVERE, null, ex);
         }
