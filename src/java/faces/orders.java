@@ -36,6 +36,7 @@ public class orders {
         order_number = json.getInt("ORDER_NUMBER", 0);
         order_date = json.getString("ORDER_DATE", "");
     }
+    
 
     public int getOrder_number() {
         return order_number;
