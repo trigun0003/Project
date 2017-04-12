@@ -6,6 +6,10 @@
 package faces;
 
 import java.io.File;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonObject;
 
@@ -36,16 +40,20 @@ public class items {
         this.description = description;
         this.item_price = item_price;
         this.user_id = user_id;
+        //this.picture = picture;
     }
     
-    public items(int item_id, String item_name, String description, int item_price, int user_id, File picture) {
-        this.item_id = item_id;
-        this.item_name = item_name;
-        this.description = description;
-        this.item_price = item_price;
-        this.user_id = user_id;
-        this.picture = picture;
+    
+    public items(JsonObject json) {        
+        item_id = json.getInt("ITEM_ID", 0);
+        item_name = json.getString("item_name", "");
+        description = json.getString("item_description", "");
+        item_price = json.getInt("item_price", 0);
+        user_id = json.getInt("user_id", 0);
+        //picture = (File)json.getString("PICTURE", "");
     }
+
+   
     
     
 
@@ -105,7 +113,7 @@ public class items {
                 .add("description", description)
                 .add("item_price", item_price)
                 .add("user_id", user_id)
-                .add("picture", picture.toString())
+                //.add("picture", picture.toString())
                 .build();
     }
     
