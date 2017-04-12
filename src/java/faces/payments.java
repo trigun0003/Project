@@ -35,6 +35,14 @@ public class payments {
         this.payment_message = payment_message;
         this.order_user = order_user;
     }
+    
+     public payments(JsonObject json) {        
+        payment_id = json.getInt("PAYMENT_ID", 0);
+        payment_date = json.getString("PAYMENT_DATE", "");
+        payment_info = json.getString("PAYMENT_INFO", "");
+        payment_message = json.getString("PAYMENT_MESSAGE","");
+        order_user = json.getInt("ORDER_USER", 0);
+    }
 
     public int getPayment_id() {
         return payment_id;

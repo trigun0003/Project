@@ -6,7 +6,6 @@
 package faces;
 
 import java.io.File;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,11 +13,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -29,79 +26,76 @@ import javax.json.JsonObject;
  *
  * @author c0687631
  */
+
 @Named
 @ApplicationScoped
-public class itemController {
+public class paymentController {
     
-
-    private List<items> itemdata;
-    private items itemobj;
+    private List<payments> paymentData;
+    private payments paymentObj;
     //private items item;
 
-    public List<items> getItemdata() {
-        return itemdata;
+    public List<payments> getPaymentData() {
+        return paymentData;
     }
 
-    public void setItemdata(List<items> itemdata) {
-        this.itemdata = itemdata;
-    }
-    
-    public items getItemobj(){
-        return itemobj;
-    }
-    
-    public itemController() {
-           getItems();
-     
+    public void setPaymentData(List<payments> paymentData) {
+        this.paymentData = paymentData;
     }
 
-    private void getItems() {
-        itemobj = new items();
+    public payments getPaymentObj() {
+        return paymentObj;
+    }
+
+    public void setPaymentObj(payments paymentObj) {
+        this.paymentObj = paymentObj;
+    }
+
+   
+
+    private void getPayments() {
+        paymentObj = new payments();
         
-        try {itemdata = new ArrayList<>();
+        try {paymentData = new ArrayList<>();
             Connection con = DBUtils.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select ITEM_ID, ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, USER_ID, TAG_ID from items");
+            ResultSet rs = stmt.executeQuery("Select PAYMENT_ID, PAYMENT_DATE, PAYMENT_INFO, PAYMENT_MESSAGE, ORDER_USER from payment");
             
             while(rs.next()){
-               items us = new items(
-                       rs.getInt("ITEM_ID"),
-                       rs.getString("ITEM_NAME"),
-                       rs.getString("ITEM_DESCRIPTION"),
-                       rs.getInt("ITEM_PRICE"),
-                       rs.getInt("USER_ID"),
-                       rs.getInt("TAG_ID")
+               payments us = new payments(
+                       rs.getInt("PAYMENT_ID"),
+                       rs.getString("PAYMENT_DATE"),
+                       rs.getString("PAYMENT_INFO"),
+                       rs.getString("PAYMENT_MESSAGE"),
+                       rs.getInt("ORDER_USER")       
                );
-                itemdata.add(us);
-                System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                paymentData.add(us);
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, ex);
-            itemdata = new ArrayList<>();
+            paymentData = new ArrayList<>();
         }
     }
 
-    public void persistToDB(items i) {
+    public void persistToDB(payments i) {
         try {
             String sql = "";
             Connection conn = DBUtils.getConnection();
-            File image = new File(i.getPicture().getPath());
-            if (i.getItem_id() <= 0) {
-                sql = "INSERT INTO items (ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, USER_ID) VALUES (? ,?, ?, ?)";
+            if (i.getPayment_id()<= 0) {
+                sql = "INSERT INTO PAYMENTS (PAYMENT_DATE, PAYMENT_INFO, PAYMENT_MESSAGE, ORDER_USER) VALUES (? ,?, ?, ?)";
             } else {
-                sql = "UPDATE items SET ITEM_NAME = ?, ITEM_DESCRIPTION = ?,  ITEM_PRICE = ?, USER_ID = ? WHERE ITEM_ID = ?";
+                sql = "UPDATE PAYMENTS SET PAYMENT_DATE = ?, PAYMENT_INFO = ?, PAYMENT_MESSAGE = ?, ORDER_USER = ? WHERE PAYMENT_ID = ?";
             }
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, i.getItem_name());
-            pstmt.setString(2, i.getDescription());
-            pstmt.setInt(3, i.getItem_price());
-            pstmt.setInt(4, i.getUser_id());
-            //pstmt.setBlob(5, null);
+            pstmt.setString(1, i.getPayment_date());
+            pstmt.setString(2, i.getPayment_info());
+            pstmt.setString(3, i.getPayment_message());
+            pstmt.setInt(4, i.getOrder_user());
 
-            if (i.getItem_id() > 0) {
-                pstmt.setInt(6, i.getItem_id());
+            if (i.getPayment_id()> 0) {
+                pstmt.setInt(5, i.getPayment_id());
             }
             pstmt.executeUpdate();
             conn.close();
@@ -112,12 +106,12 @@ public class itemController {
 
     }
 
-    public void removeFromDB(items i) {
+    public void removeFromDB(payments i) {
         try {
 
             Connection conn = DBUtils.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM items WHERE ITEM_ID = ?");
-            pstmt.setInt(1, i.getItem_id());
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM payments WHERE PAYMENT_ID = ?");
+            pstmt.setInt(1, i.getPayment_id());
             pstmt.executeUpdate();
             conn.close();
 
@@ -128,15 +122,15 @@ public class itemController {
 
     public JsonArray getAllJson() {
         JsonArrayBuilder json = Json.createArrayBuilder();
-        for (items i : itemdata) {
+        for (payments i : paymentData) {
             json.add(i.toJson());
         }
         return json.build();
     }
 
-    public items getById(int id) {
-        for (items i : itemdata) {
-            if (i.getItem_id() == id) {
+    public payments getById(int id) {
+        for (payments i : paymentData) {
+            if (i.getPayment_id()== id) {
                 return i;
             }
         }
@@ -146,7 +140,7 @@ public class itemController {
     
 
     public JsonObject getByIdJason(int id) {
-        items i = getById(id);
+        payments i = getById(id);
         if (i != null) {
             return getById(id).toJson();
         } else {
@@ -156,19 +150,19 @@ public class itemController {
     }
     
     public JsonObject addJson(JsonObject json) {
-        items i = new items(json);
+        payments i = new payments(json);
         persistToDB(i);
-        itemdata.add(i);
+        paymentData.add(i);
         return i.toJson();
     }
     
     public JsonObject editJson(int id, JsonObject json)
     {
-        items i = getById(id);
-        i.setUser_id(json.getInt("USER_ID", 0));
-        i.setItem_name(json.getString("ITEM_NAME", ""));
-        i.setItem_price(json.getInt("ITEM_PRICE", 0));
-        i.setTag_id(json.getInt("TAG_ID"));
+        payments i = getById(id);
+        i.setPayment_date(json.getString("PAYMENT_DATE", ""));
+        i.setPayment_info(json.getString("PAYMENT_INFO", ""));
+        i.setPayment_message(json.getString("PAYMENT_MESSAGE"));
+        i.setOrder_user(json.getInt("ORDER_USER"));
         persistToDB(i);
         return i.toJson();
     }
@@ -176,11 +170,11 @@ public class itemController {
    
     public boolean deleteById(int id)
     {
-        items i = getById(id);
+        payments i = getById(id);
         if(i != null)
         {
             removeFromDB(i);
-            itemdata.remove(i);
+            paymentData.remove(i);
             return true;
         }else
         {

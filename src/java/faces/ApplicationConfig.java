@@ -32,6 +32,9 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(faces.UsersRest.class);
         resources.add(faces.itemRest.class);
+        resources.add(faces.ordersRest.class);
+        resources.add(faces.paymentREST.class);
+        resources.add(faces.tagRest.class);
     }
     
 }

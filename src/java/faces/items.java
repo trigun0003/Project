@@ -6,6 +6,11 @@
 package faces;
 
 import java.io.File;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonObject;
 
@@ -21,6 +26,11 @@ public class items {
    private int item_price;
    private int user_id;
    private File picture;
+   private int tag_id;
+
+    
+
+    
 
    
      /**
@@ -30,22 +40,27 @@ public class items {
 
     }
 
-    public items(int item_id, String item_name, String description, int item_price, int user_id) {
+    public items(int item_id, String item_name, String description, int item_price, int user_id, int tag_id) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.description = description;
         this.item_price = item_price;
         this.user_id = user_id;
+        this.tag_id = tag_id;
     }
     
-    public items(int item_id, String item_name, String description, int item_price, int user_id, File picture) {
-        this.item_id = item_id;
-        this.item_name = item_name;
-        this.description = description;
-        this.item_price = item_price;
-        this.user_id = user_id;
-        this.picture = picture;
+    
+    public items(JsonObject json) {        
+        item_id = json.getInt("ITEM_ID", 0);
+        item_name = json.getString("item_name", "");
+        description = json.getString("item_description", "");
+        item_price = json.getInt("item_price", 0);
+        user_id = json.getInt("user_id", 0);
+        tag_id = json.getInt("tag_id", 0);
+        //picture = (File)json.getString("PICTURE", "");
     }
+
+   
     
     
 
@@ -97,6 +112,14 @@ public class items {
     public void setPicture(File picture) {
         this.picture = picture;
     }
+    
+    public int getTag_id() {
+        return tag_id;
+    }
+
+    public void setTag_id(int tag_id) {
+        this.tag_id = tag_id;
+    }
   
     public JsonObject toJson() {
         return Json.createObjectBuilder()
@@ -105,7 +128,7 @@ public class items {
                 .add("description", description)
                 .add("item_price", item_price)
                 .add("user_id", user_id)
-                .add("picture", picture.toString())
+                .add("tag_id", tag_id)
                 .build();
     }
     

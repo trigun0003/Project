@@ -38,7 +38,7 @@ public class itemRest {
     @Inject
     private itemController itemController;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    //private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
     @GET
     @Produces("application/json")
@@ -50,7 +50,7 @@ public class itemRest {
     @Path("{id}")
     @Produces("application/json")
     public Response getById(@PathParam("id") int id) {
-        JsonObject json = itemController.getByIdJson(id);
+        JsonObject json = itemController.getByIdJason(id);
         if (json != null) {
             return Response.ok(json).build();
         } else {

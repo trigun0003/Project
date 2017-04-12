@@ -44,12 +44,13 @@ public class orderController {
             }
             Connection connection = DBUtils.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("Select * from orders");
+            ResultSet rs = statement.executeQuery("Select ORDER_NUMBER,ITEM_ID,ORDER_DATE, QUANTITY from orders");
             while (rs.next()) {
                 orders or = new orders();
                 or.setOrder_number(rs.getInt("ORDER_NUMBER"));
                 or.setItem_id(rs.getInt("ITEM_ID"));
                 or.setOrder_date(rs.getString("ORDER_DATE"));
+                or.setQuantity(rs.getInt("QUANTITY"));
                 orderdata.add(or);
             }
 
@@ -64,17 +65,18 @@ public class orderController {
             String sql = "";
             Connection conn = DBUtils.getConnection();
             if (o.getOrder_number() <= 0) {
-                sql = "INSERT INTO orders (ITEM_ID, ORDER_DATE) VALUES (?, ?)";
+                sql = "INSERT INTO orders (ITEM_ID, ORDER_DATE, QUANTITY) VALUES (?, ?, ?)";
             } else {
-                sql = "UPDATE orders SET ITEM_ID = ? ORDER_DATE = ? WHERE ORDER_NUMBER = ?";
+                sql = "UPDATE orders SET ITEM_ID = ?, ORDER_DATE = ?, QUANTITY = ? WHERE ORDER_NUMBER = ?";
             }
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, o.getItem_id());
             pstmt.setString(2, o.getOrder_date());
+            pstmt.setInt(3, o.getQuantity());
 
             if (o.getOrder_number() > 0) {
-                pstmt.setInt(3, o.getOrder_number());
+                pstmt.setInt(4, o.getOrder_number());
             }
             pstmt.executeUpdate();
             conn.close();
@@ -115,6 +117,13 @@ public class orderController {
         }
         return null;
     }
+    
+    public JsonObject addJson(JsonObject json) {
+        orders o = new orders(json);
+        persistToDB(o);
+        orderdata.add(o);
+        return o.toJson();
+    }
 
     public JsonObject getByIdJason(int id) {
         orders o = getById(id);
@@ -149,3 +158,4 @@ public class orderController {
     }
 
 }
+

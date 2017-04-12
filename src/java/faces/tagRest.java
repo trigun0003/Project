@@ -5,8 +5,6 @@
  */
 package faces;
 
-import java.text.SimpleDateFormat;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Context;
@@ -25,31 +23,27 @@ import javax.ws.rs.core.Response;
 /**
  * REST Web Service
  *
- * @author Heber
+ * @author c0687631
  */
-@Path("/users")
-@ApplicationScoped
-public class UsersRest {
-
-    
+@Path("/tags")
+public class tagRest {
 
     @Inject
-    private userController userController;
+    private tagController tagController;
 
-    
+    //private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
     @GET
     @Produces("application/json")
     public Response getAll() {
-        return Response.ok(userController.getAllJson()).build();
+        return Response.ok(tagController.getAllJson()).build();
     }
-    
-   
+
     @GET
     @Path("{id}")
     @Produces("application/json")
     public Response getById(@PathParam("id") int id) {
-        JsonObject json = userController.getByIdJason(id);
+        JsonObject json = tagController.getByIdJason(id);
         if (json != null) {
             return Response.ok(json).build();
         } else {
@@ -62,7 +56,7 @@ public class UsersRest {
     @Consumes("application/json")
     @Produces("application/json")
     public Response add(JsonObject json) {
-        return Response.ok(userController.addJson(json)).build();
+        return Response.ok(tagController.addJson(json)).build();
     }
 
     @PUT
@@ -70,7 +64,7 @@ public class UsersRest {
     @Consumes("application/json")
     @Produces("application/json")
     public Response edit(@PathParam("id") int id, JsonObject json) {
-        JsonObject jsonWithId = userController.editJson(id, json);
+        JsonObject jsonWithId = tagController.editJson(id, json);
         if (jsonWithId != null) {
             return Response.ok(jsonWithId).build();
         } else {
@@ -81,12 +75,10 @@ public class UsersRest {
     @DELETE
     @Path("{id}")
     public Response del(@PathParam("id") int id) {
-        if (userController.deleteById(id)) {
+        if (tagController.deleteById(id)) {
             return Response.ok().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-
- 
 }

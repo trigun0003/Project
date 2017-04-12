@@ -5,6 +5,7 @@
  */
 package faces;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,10 +20,22 @@ public class orders {
     private int order_number;
     private int item_id;
     private String order_date;
+    private int quantity;
+
+   
+
+    
     
     public orders()
     {
         
+    }
+    
+     public orders(int order_number, int item_id, String order_date, int quantity) {
+        this.order_number = order_number;
+        this.item_id = item_id;
+        this.order_date = order_date;
+        this.quantity = quantity;
     }
 
     public orders(int order_number, int item_id, String order_date) {
@@ -30,6 +43,14 @@ public class orders {
         this.item_id = item_id;
         this.order_date = order_date;
     }
+    
+    public orders(JsonObject json) {        
+        item_id = json.getInt("ITEM_ID", 0);
+        order_number = json.getInt("ORDER_NUMBER", 0);
+        order_date = json.getString("ORDER_DATE", "");
+        quantity  = json.getInt("QUANTITY", 0);
+    }
+    
 
     public int getOrder_number() {
         return order_number;
@@ -50,11 +71,18 @@ public class orders {
     public String getOrder_date() {
         return order_date;
     }
+    
+    public int getQuantity() {
+        return quantity;
+    }
 
-    public void setOrder_date(String order_date) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        dateFormat.format(order_date);
-        this.order_date = order_date;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setOrder_date(Date order_date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        this.order_date = dateFormat.format(order_date);
     }
     
     public JsonObject toJson() {
@@ -62,6 +90,7 @@ public class orders {
                 .add("order_number", order_number)
                 .add("item_id", item_id)
                 .add("order_date", order_date)
+                .add("quantity", quantity)
                 .build();
     }
     
