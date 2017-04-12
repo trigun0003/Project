@@ -5,9 +5,7 @@
  */
 package faces;
 
-import com.sun.istack.internal.logging.Logger;
-import faces.DBUtils;
-import faces.items;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
@@ -48,7 +47,7 @@ public class itemController {
                 us.setUser_id(resultset.getInt("USER_ID"));
             }
         } catch (SQLException ex){
-            Logger.getLogger(itemController.class.getClass()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
     }
     

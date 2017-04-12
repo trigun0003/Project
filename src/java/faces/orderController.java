@@ -5,10 +5,7 @@
  */
 package faces;
 
-import com.sun.istack.internal.logging.Logger;
-import faces.DBUtils;
-import faces.items;
-import faces.orders;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +16,7 @@ import java.util.logging.Level;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.sql.*;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -57,7 +55,7 @@ public class orderController {
 
             connection.close();
         } catch (SQLException ex) {
-            Logger.getLogger(orderController.class.getClass()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(orderController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,7 +80,7 @@ public class orderController {
             conn.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(orderController.class.getClass()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(orderController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -97,7 +95,7 @@ public class orderController {
             conn.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(orderController.class.getClass()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(orderController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
     }
 
