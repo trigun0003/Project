@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
         resources.add(faces.UsersRest.class);
         resources.add(faces.itemRest.class);
         resources.add(faces.ordersRest.class);
+        resources.add(faces.tagRest.class);
     }
     
 }

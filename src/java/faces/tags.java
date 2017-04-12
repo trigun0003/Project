@@ -16,10 +16,20 @@ public class tags {
 
     private int tag_id;
     private String tag_name;
+    
+    public tags()
+    {
+        
+    }
 
     public tags(int tag_id, String tag_name) {
         this.tag_id = tag_id;
         this.tag_name = tag_name;
+    }
+    
+    public tags(JsonObject json) {        
+        tag_id = json.getInt("tag_id", 0);
+        tag_name = json.getString("tag_name", "");
     }
 
     public int getTag_id() {
