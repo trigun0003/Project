@@ -6,6 +6,7 @@
 package faces;
 
 import java.text.SimpleDateFormat;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Context;
@@ -27,6 +28,7 @@ import javax.ws.rs.core.Response;
  * @author Heber
  */
 @Path("/users")
+@ApplicationScoped
 public class UsersRest {
 
     
@@ -34,21 +36,20 @@ public class UsersRest {
     @Inject
     private userController userController;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    
 
     @GET
+    @Produces("application/json")
     public Response getAll() {
-        return Response.ok(userController.getUserById(1)).build();
+        return Response.ok(userController.getAllJson()).build();
     }
-
-    /*
     
    
     @GET
     @Path("{id}")
     @Produces("application/json")
     public Response getById(@PathParam("id") int id) {
-        JsonObject json = userController.getByIdJson(id);
+        JsonObject json = userController.getByIdJason(id);
         if (json != null) {
             return Response.ok(json).build();
         } else {
@@ -87,5 +88,5 @@ public class UsersRest {
         }
     }
 
- */
+ 
 }

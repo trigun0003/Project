@@ -85,7 +85,7 @@ public class itemController {
             if (i.getItem_id() <= 0) {
                 sql = "INSERT INTO items (ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, USER_ID) VALUES (? ,?, ?, ?)";
             } else {
-                sql = "UPDATE orders SET ITEM_NAME = ?, ITEM_DESCRIPTION = ?,  ITEM_PRICE = ?, USER_ID = ? WHERE ITEM_ID = ?";
+                sql = "UPDATE items SET ITEM_NAME = ?, ITEM_DESCRIPTION = ?,  ITEM_PRICE = ?, USER_ID = ? WHERE ITEM_ID = ?";
             }
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
