@@ -49,7 +49,7 @@ public class orderController {
                 orders or = new orders();
                 or.setOrder_number(rs.getInt("ORDER_NUMBER"));
                 or.setItem_id(rs.getInt("ITEM_ID"));
-                or.setOrder_date(rs.getString("ORDER_DATE"));
+                or.setOrder_date(rs.getDate("ORDER_DATE"));
                 or.setQuantity(rs.getInt("QUANTITY"));
                 orderdata.add(or);
             }

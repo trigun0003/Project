@@ -28,7 +28,7 @@ import javax.ws.rs.core.Response;
 @Path("/tags")
 public class tagRest {
 
-    @Inject
+    
     private tagController tagController;
 
     //private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
