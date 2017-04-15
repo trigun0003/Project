@@ -5,6 +5,8 @@
  */
 package faces;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -45,7 +47,7 @@ public class paymentsTest {
      */
     @Test
     public void testToJson() {
-         
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date today = new Date();      
         payments instance = new payments();
         instance.setPayment_id(1);
