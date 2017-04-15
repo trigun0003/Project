@@ -39,7 +39,13 @@ public class Login {
             if((email.equals(u.getEmail()) || email.equals(u.getUser_name())) && password.equals(u.getPassword())){
                 loggedIn = true;
                 currentUser = u;
-                nextPage = "index";
+                if(u.getUser_type() ==1 || u.getUser_type() == 3){
+                    nextPage = "index";
+                }
+                else if (u.getUser_type() == 2|| u.getUser_type() == 4){
+                    nextPage = "AdminHome";
+            }
+                
             }
         }
         return nextPage;
