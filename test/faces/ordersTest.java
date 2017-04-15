@@ -48,7 +48,8 @@ public class ordersTest {
         instance.setItem_id(1);
         instance.setOrder_date(new java.sql.Date(today.getTime()));
         instance.setOrder_number(1);
-        JsonObject expResult = Json.createObjectBuilder().add("order_number", 1).add("item_id", 1).add("order_date", new java.sql.Date(today.getTime()).toString()).build();        
+        instance.setQuantity(5);
+        JsonObject expResult = Json.createObjectBuilder().add("order_number", 1).add("item_id", 1).add("order_date", new java.sql.Date(today.getTime()).toString()).add("quantity", 5).build();        
         JsonObject result = instance.toJson();
         assertEquals(expResult, result);
         
