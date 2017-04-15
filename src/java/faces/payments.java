@@ -5,6 +5,10 @@
  */
 package faces;
 
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Named;
 import javax.json.Json;
@@ -35,7 +39,7 @@ public class payments {
         this.payment_message = payment_message;
         this.order_user = order_user;
     }
-    
+
      public payments(JsonObject json) {        
         payment_id = json.getInt("PAYMENT_ID", 0);
         payment_date = json.getString("PAYMENT_DATE", "");
@@ -43,6 +47,7 @@ public class payments {
         payment_message = json.getString("PAYMENT_MESSAGE","");
         order_user = json.getInt("ORDER_USER", 0);
     }
+
 
     public int getPayment_id() {
         return payment_id;
@@ -56,8 +61,10 @@ public class payments {
         return payment_date;
     }
 
-    public void setPayment_date(String payment_date) {
-        this.payment_date = payment_date;
+
+    public void setPayment_date(Date payment_date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        this.payment_date = dateFormat.format(payment_date);
     }
 
     public String getPayment_info() {
