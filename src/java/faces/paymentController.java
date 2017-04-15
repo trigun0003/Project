@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -158,13 +161,19 @@ public class paymentController {
     
     public JsonObject editJson(int id, JsonObject json)
     {
-        payments i = getById(id);
-        i.setPayment_date(json.getString("PAYMENT_DATE", ""));
-        i.setPayment_info(json.getString("PAYMENT_INFO", ""));
-        i.setPayment_message(json.getString("PAYMENT_MESSAGE"));
-        i.setOrder_user(json.getInt("ORDER_USER"));
-        persistToDB(i);
-        return i.toJson();
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            payments i = getById(id);
+            i.setPayment_date(dateFormat.parse(json.getString("PAYMENT_DATE", "")));
+            i.setPayment_info(json.getString("PAYMENT_INFO", ""));
+            i.setPayment_message(json.getString("PAYMENT_MESSAGE"));
+            i.setOrder_user(json.getInt("ORDER_USER"));
+            persistToDB(i);
+            return i.toJson();
+        } catch (ParseException ex) {
+            Logger.getLogger(paymentController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
    
