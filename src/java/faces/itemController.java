@@ -82,7 +82,7 @@ public class itemController {
         }
     }
 
-    public void persistToDB(items i) {
+    public String persistToDB(items i) {
         try {
             String sql = "";
             Connection conn = DBUtils.getConnection();
@@ -114,6 +114,7 @@ public class itemController {
         }
         itemobj = new items(0,"","",0,0,0);
         getItems();
+        return "ViewProduct";
 
     }
 
