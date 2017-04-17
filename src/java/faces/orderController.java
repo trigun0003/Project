@@ -184,24 +184,22 @@ public class orderController {
         return "ManageOrderEdit";
     }
 
-    public void save() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public String save() {
         try {
             Connection conn = DBUtils.getConnection();
-            String sql = "UPDATE orders SET ITEM_ID = ?, ORDER_DATE = ?, QUANTITY WHERE ORDER_NUMBER = ?";
+            String sql = "UPDATE orders SET ITEM_ID = ?, QUANTITY = ? WHERE ORDER_NUMBER = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, currentOrder.getItem_id());
-            pstmt.setDate(2, new java.sql.Date(dateFormat.parse(currentOrder.getOrder_date()).getTime()));
-            pstmt.setInt(3, currentOrder.getQuantity());
+            pstmt.setInt(2, currentOrder.getQuantity());
+            pstmt.setInt(3, currentOrder.getOrder_number());
             pstmt.executeUpdate();
             getOrders();
             currentOrder = new orders();
         } catch (SQLException ex) {
             Logger.getLogger(orderController.class.getName()).log(Level.SEVERE, null, ex);
             currentOrder = new orders();
-        } catch (ParseException ex) {
-            Logger.getLogger(orderController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "ManageOrder";
     }
 
 }

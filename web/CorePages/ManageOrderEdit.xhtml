@@ -158,13 +158,13 @@ and open the template in the editor.
                                     </div>
                                 </div>
                                 
-                                <!-- Text input -->
+                                <!-- Text input 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="txtDate"> Date</label>
                                     <div class="col-sm-9">
                                         <h:inputText id="txtDate" class="form-control" value="#{orderController.currentOrder.order_date}" />
                                     </div>
-                                </div>
+                                </div>-->
                                 
                                 <!-- Text input -->
                                 <div class="form-group" style="margin-bottom: 30px;">
@@ -178,8 +178,9 @@ and open the template in the editor.
                                 <div class="form-group" >
                                     <label class="col-sm-3 control-label" style="margin-top: 30px;"></label>
                                     <div class="col-sm-9" style="margin-top: 20px;">
-                                        <h:commandLink id="btnSave" type="submit" class="btn btn-primary btn-group-lg" action="#{orderController.save()}" ><i class="fa fa-save" ></i> Save</h:commandLink>
-                                        <h:commandLink id="btnClear" type="submit" class="btn btn-danger btn-group-lg" action="AdminHome.xhtml" ><i class="fa fa-times" ></i> Cancel</h:commandLink>
+                                        <h:commandButton id="btnSave" class="btn btn-primary btn-group-lg" value="Save" action="#{orderController.save()}" />
+                                        <h:commandButton id="btnClear" class="btn btn-danger btn-group-lg" value="Cancel" action="ManageOrder.xhtml" />
+                                       
                                     </div>
                                 </div>
                             </h:form>
