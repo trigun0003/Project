@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 import java.util.logging.Level;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -31,12 +32,15 @@ import javax.json.JsonObject;
 public class orderController {
 
     private List<orders> orderdata;
+    private orders currentOrder;
 
     public orderController() {
         getOrders();
+        currentOrder = new orders(0,0,"",0);
     }
 
     private void getOrders() {
+        orderdata = new ArrayList<>();
 
         try {
             if (orderdata == null) {
@@ -61,6 +65,7 @@ public class orderController {
     }
 
     public void persistToDB(orders o) {
+        Date today = new Date();
         try {
             String sql = "";
             Connection conn = DBUtils.getConnection();
@@ -72,7 +77,7 @@ public class orderController {
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, o.getItem_id());
-            pstmt.setString(2, o.getOrder_date());
+            pstmt.setDate(2, new java.sql.Date(today.getTime()));
             pstmt.setInt(3, o.getQuantity());
 
             if (o.getOrder_number() > 0) {
@@ -84,6 +89,7 @@ public class orderController {
         } catch (SQLException ex) {
             Logger.getLogger(orderController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
+        getOrders();
 
     }
 
@@ -160,6 +166,20 @@ public class orderController {
         {
             return false;
         }
+    }
+
+    public orders getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(orders currentOrder) {
+        this.currentOrder = currentOrder;
+    }
+    
+    public String cancel(){
+        currentOrder = new orders(0,0,"",0);
+        
+        return "AllOrder.xhtml";
     }
 
 }
