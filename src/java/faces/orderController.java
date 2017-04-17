@@ -5,7 +5,6 @@
  */
 package faces;
 
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +16,9 @@ import java.util.logging.Level;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -36,7 +38,7 @@ public class orderController {
 
     public orderController() {
         getOrders();
-        currentOrder = new orders(0,0,"",0);
+        currentOrder = new orders(0, 0, "", 0);
     }
 
     private void getOrders() {
@@ -96,7 +98,8 @@ public class orderController {
     public void removeFromDB(orders o) {
         try {
             Connection conn = DBUtils.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM orders WHERE ORDER_NUMBER = ?");
+            String sql = "DELETE FROM orders WHERE order_number = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, o.getOrder_number());
             pstmt.executeUpdate();
             conn.close();
@@ -109,7 +112,6 @@ public class orderController {
     public List<orders> getOrderdata() {
         return orderdata;
     }
-    
 
     public JsonArray getAllJson() {
         JsonArrayBuilder json = Json.createArrayBuilder();
@@ -127,7 +129,7 @@ public class orderController {
         }
         return null;
     }
-    
+
     public JsonObject addJson(JsonObject json) {
         orders o = new orders(json);
         persistToDB(o);
@@ -144,25 +146,21 @@ public class orderController {
         }
 
     }
-    
-    public JsonObject editJson(int id, JsonObject json)
-    {
+
+    public JsonObject editJson(int id, JsonObject json) {
         orders o = getById(id);
         o.setItem_id(json.getInt("ITEM_ID", 0));
         persistToDB(o);
         return o.toJson();
     }
-    
-    public boolean deleteById(int id)
-    {
+
+    public boolean deleteById(int id) {
         orders o = getById(id);
-        if(o != null)
-        {
+        if (o != null) {
             removeFromDB(o);
             orderdata.remove(o);
             return true;
-        }else
-        {
+        } else {
             return false;
         }
     }
@@ -174,12 +172,36 @@ public class orderController {
     public void setCurrentOrder(orders currentOrder) {
         this.currentOrder = currentOrder;
     }
-    
-    public String cancel(){
-        currentOrder = new orders(0,0,"",0);
-        
+
+    public String cancel() {
+        currentOrder = new orders(0, 0, "", 0);
+
         return "AllOrder.xhtml";
     }
 
-}
+    public String edit(orders o) {
+        currentOrder = o;
+        return "ManageOrderEdit";
+    }
 
+    public void save() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Connection conn = DBUtils.getConnection();
+            String sql = "UPDATE orders SET ITEM_ID = ?, ORDER_DATE = ?, QUANTITY WHERE ORDER_NUMBER = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, currentOrder.getItem_id());
+            pstmt.setDate(2, new java.sql.Date(dateFormat.parse(currentOrder.getOrder_date()).getTime()));
+            pstmt.setInt(3, currentOrder.getQuantity());
+            pstmt.executeUpdate();
+            getOrders();
+            currentOrder = new orders();
+        } catch (SQLException ex) {
+            Logger.getLogger(orderController.class.getName()).log(Level.SEVERE, null, ex);
+            currentOrder = new orders();
+        } catch (ParseException ex) {
+            Logger.getLogger(orderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+}
