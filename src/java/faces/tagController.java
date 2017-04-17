@@ -53,11 +53,12 @@ public class tagController {
     
     public tagController() {
            gettags();
+           objtag = new tags(0, "");
      
     }
 
     private void gettags() {
-        objtag = new tags();
+        
         
         try {itemtag = new ArrayList<>();
             Connection con = DBUtils.getConnection();
@@ -85,7 +86,7 @@ public class tagController {
             if (t.getTag_id()<= 0) {
                 sql = "INSERT INTO tags (TAG_NAME ) VALUES (?)";
             } else {
-                sql = "UPDATE tags SET TAG_NAME = ? WHERE TAG_NAME = ?";
+                sql = "UPDATE tags SET TAG_NAME = ? WHERE TAG_ID = ?";
             }
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -101,6 +102,7 @@ public class tagController {
         } catch (SQLException ex) {
             Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
+        gettags();
 
     }
 
