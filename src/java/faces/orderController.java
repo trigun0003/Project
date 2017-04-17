@@ -95,16 +95,15 @@ public class orderController {
 
     public void removeFromDB(orders o) {
         try {
-
             Connection conn = DBUtils.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM orders WHERE ORDER_NUMBER = ?");
             pstmt.setInt(1, o.getOrder_number());
             pstmt.executeUpdate();
             conn.close();
-
         } catch (SQLException ex) {
             Logger.getLogger(orderController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
+        getOrders();
     }
 
     public List<orders> getOrderdata() {
