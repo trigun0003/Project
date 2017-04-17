@@ -101,6 +101,11 @@ public class orderController {
         }
     }
 
+    public List<orders> getOrderdata() {
+        return orderdata;
+    }
+    
+
     public JsonArray getAllJson() {
         JsonArrayBuilder json = Json.createArrayBuilder();
         for (orders o : orderdata) {
