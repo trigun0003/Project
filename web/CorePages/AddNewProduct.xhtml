@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>BNBH E-Shopping | Admin </title>
         <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -131,28 +132,28 @@
                         <!-- Form Name -->
                     <h:form>   
                         <br />
-                        <div class="control-group">
+                        <!--<div class="control-group">
                             <label class="control-label" for="">Category Name</label>
                             <div class="controls">
                                 <h:inputText id="txtCategory" class="form-control"  />
-                                <!--<h:selectOneMenu class="form-control" value="#{user.favCoffee1}">
+                                <h:selectOneMenu class="form-control" value="">
                                     <h:selectItem itemValue="Cream Latte" itemLabel="" />
                                     <h:selectItem itemValue="Extreme Mocha" itemLabel="" />
                                     <h:selectItem itemValue="Buena Vista" itemLabel="" />
-                                </h:selectOneMenu>-->
-                                <!--<h:selectOneListbox class="form-control">
+                                </h:selectOneMenu>
+                                <h:selectOneListbox class="form-control">
                                     <h:selectOneListbox>01</h:selectOneListbox>
                                     <h:selectOneListbox>02</h:selectOneListbox>
                                     <h:selectOneListbox>03</h:selectOneListbox>
-                                </h:selectOneListbox>-->
+                                </h:selectOneListbox>
                             </div>
-                        </div>
+                        </div>-->
                         <br />
                         <!-- Text input-->
                         <div class="control-group">
-                            <label class="control-label" for="txtprodName">Product Name</label>
+                            <label class="control-label" for="txtprodName">Item Name</label>
                             <div class="controls">
-                                <h:inputText id="txtprodName" class="form-control"  />
+                                <h:inputText id="txtprodName" class="form-control" value="#{itemController.itemobj.item_name}" />
                             </div>
                         </div>
                         <br />
@@ -169,36 +170,35 @@
                             </div>
                         </div>-->
                         <div class="control-group">
-                            <label class="control-label" for="txtUnitPrice">Unit Price</label>
+                            <label class="control-label" for="txtUnitPrice">Item Price</label>
                             <div class="controls">
-                                <h:inputText id="txtUnitPrice" class=" form-control" />
+                                <h:inputText id="txtUnitPrice" class=" form-control" value="#{itemController.itemobj.item_price}" />
                             </div>
                         </div>
                         <br />
-                        <!--image input-->
+                        <!--image input
                         
                         <div class="control-group">
                             <label class="control-lable">Product Image</label>
                             <div class="controls">
                                 <h:inputFile id="FileUpload1" class="btn btn-default"></h:inputFile>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Textarea -->
                         <div class="control-group">
                             <label class="control-label" for="textarea">Description</label>
                             <div class="controls">
-                                <h:inputTextarea id="textarea" class="form-control"></h:inputTextarea>
+                                <h:inputTextarea id="textarea" class="form-control" value="#{itemController.itemobj.description}"></h:inputTextarea>
                             </div>
                         </div>
 
                         <!-- Button -->
                         <div class="control-group">
                             <label class="control-label" for="singlebutton"></label>
-                            <div class="controls">
-                                <h:commandLink id="btnsave" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-save" ></i> SAVE</h:commandLink>
-                                <h:commandLink id="btncancel" type="submit" class="btn btn-primary btn-group-lg"><i class="fa fa-times"></i> CANCEL</h:commandLink>
-                        </div>
+                            <h:commandButton  id="btnsave"  class="btn btn-primary btn-group-lg" value="Save" action="#{itemController.persistToDB(itemController.itemobj)}" />
+                            <h:commandButton  id="btncancel"  class="btn btn-primary btn-group-lg" value="Cancel" action="ViewProduct.xhtml" />
+                            
                     </div>
                     </h:form> 
                 </div>
@@ -212,36 +212,28 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                 
-                                <table class="table table-bordered table-hover table-striped table-responsive">
-                                    <tr>
-                                        <th>Product ID</th>
-                                        <th>Category Name</th>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Description</th>
-                                    </tr>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Toys</td>
-                                        <td>Duck</td>
-                                        <td>29</td>
-                                        <td>Yellow color with Blue shade and black eyes duck.</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Toys</td>
-                                        <td>Teddy Bear</td>
-                                        <td>69</td>
-                                        <td>Blue color with Black shade and black eyes Bear.</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Electronic</td>
-                                        <td>Smart Phone</td>
-                                        <td>299</td>
-                                        <td>2 GB RAM and wide screen with water resist.</td>
-                                    </tr>
-                                </table>
+                                
+                                    <h:form>
+
+                                        <h:dataTable class="table table-bordered table-hover table-striped table-responsive" value="#{itemController.itemdata}" var="item">
+                                        <h:column>
+                                            <f:facet name="header">Item ID</f:facet>
+                                            #{item.item_id}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Item Name</f:facet>
+                                                #{item.item_name}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Description</f:facet>
+                                                #{item.description}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Price</f:facet>
+                                                #{item.item_price}
+                                        </h:column>
+                                    </h:dataTable>
+                                    </h:form>
                                 
                             </div>
                         </div>

@@ -137,56 +137,49 @@ and open the template in the editor.
                         <h2 class="page-header">Manage Orders</h2>
                     </div>
                 </div>
-                
-
                 <div class="row col-lg-8">
                     <br />
-                    <h:form>
-                        <div class="panel panel-default">
+                <div class="panel panel-default">
                         <div class="panel-heading">
                             Category Lists
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <h:form>
+                <h:dataTable class="table table-bordered table-hover table-striped table-responsive" value="#{orderController.orderdata}" var="o">
+            <h:column>
+                <f:facet name="header">Order Number</f:facet>
+                    #{o.order_number}
+            </h:column>
 
-                                    <h:dataTable class="table table-bordered table-hover table-striped table-responsive" value="#{orderController.orderdata}" var="orders">
-                                        <h:column>
-                                            <f:facet name="header">Order Number</f:facet>
-                                            #{orders.order_number}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Item ID</f:facet>
-                                                #{orders.item_id}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Date</f:facet>
-                                                #{orders.order_date}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Quantity</f:facet>
-                                                #{orders.quantity}
-                                        </h:column>
-                                        <h:column>
-                                            <h:form>
-                                            <h:commandLink id="btnEdit1" type="submit" class="btn btn-primary btn-group-lg" action="#{orderController.persistToDB(orders)}" ><i class="fa fa-edit" ></i> Edit</h:commandLink>
-                                            </h:form>
-                                        </h:column>
-                                         <h:column>
-                                             <h:form>
-                                             <h:commandLink id="btnDelete1" class="btn btn-primary btn-group-lg" action="#{orderController.removeFromDB(orders)}"><i class="fa fa-times"></i> Delete</h:commandLink>
-                                             </h:form>
-                                         </h:column>
-                                    </h:dataTable>
-                                    </h:form>
-                               
-                                
-                                
+            <h:column>
+                <f:facet name="header">Item ID</f:facet>
+                    #{o.item_id}
+            </h:column>            
+            <h:column>
+                <f:facet name="header">Order Date</f:facet>
+                    #{o.order_date}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Quantity</f:facet>
+                    #{o.quantity}
+            </h:column>
+            
+            <h:column>
+                <h:form>
+                    <h:commandButton id="btnDelete1" class="btn btn-primary btn-group-lg" value="Delete" action="#{orderController.removeFromDB(o)}" />
+                </h:form>
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandButton id="btnEdit1" class="btn btn-primary btn-group-lg" value="Edit" action="#{orderController.edit(o)}" />
+                </h:form>
+            </h:column>
+        </h:dataTable>
                             </div>
-                        </div>
+                            </div>
                     </div>
-                    </h:form>
-                </div>
+                    </div>
+                
             </div>
             
         </div>
