@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -39,16 +39,8 @@ public class tagController {
         return itemtag;
     }
 
-    public void setItemtag(List<tags> itemtag) {
-        this.itemtag = itemtag;
-    }
-
     public tags getObjtag() {
         return objtag;
-    }
-
-    public void setObjtag(tags objtag) {
-        this.objtag = objtag;
     }
     
     public tagController() {
@@ -59,34 +51,35 @@ public class tagController {
 
     private void gettags() {
         
-        
-        try {itemtag = new ArrayList<>();
+        itemtag = new ArrayList<>();
+        try {
+            
             Connection con = DBUtils.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("Select TAG_ID,TAG_NAME from TAGS");
+            ResultSet rs = stmt.executeQuery("Select * from tags");
             
             while(rs.next()){
-               tags us = new tags(
-                       rs.getInt("TAG_ID"),
-                       rs.getString("TAG_NAME")
-               );
+               tags us = new tags();
+               us.setTag_id(rs.getInt("tag_id"));
+               us.setTag_name(rs.getString("tag_name"));        
                 itemtag.add(us);
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, ex);
-            itemtag = new ArrayList<>();
         }
+        objtag = new tags(0, "");
     }
 
     public void persistToDB(tags t) {
+        
         try {
             String sql = "";
             Connection conn = DBUtils.getConnection();
             if (t.getTag_id()<= 0) {
-                sql = "INSERT INTO tags (TAG_NAME ) VALUES (?)";
+                sql = "INSERT INTO tags (tag_name ) VALUES (?)";
             } else {
-                sql = "UPDATE tags SET TAG_NAME = ? WHERE TAG_ID = ?";
+                sql = "UPDATE tags SET tag_name = ? WHERE tag_id = ?";
             }
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

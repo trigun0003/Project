@@ -52,7 +52,7 @@ public class itemController {
     
     public itemController() {
            getItems();
-     
+           itemobj = new items(0,"","",0,0,0);
     }
 
     private void getItems() {
@@ -82,26 +82,29 @@ public class itemController {
         }
     }
 
-    public void persistToDB(items i) {
+    public String persistToDB(items i) {
         try {
             String sql = "";
             Connection conn = DBUtils.getConnection();
-            File image = new File(i.getPicture().getPath());
+            //File image = new File(i.getPicture().getPath());
             if (i.getItem_id() <= 0) {
-                sql = "INSERT INTO items (ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, USER_ID) VALUES (? ,?, ?, ?)";
+                sql = "INSERT INTO items (ITEM_NAME, ITEM_DESCRIPTION, ITEM_PRICE, TAG_ID) VALUES (? ,?, ?, ?)";
             } else {
-                sql = "UPDATE items SET ITEM_NAME = ?, ITEM_DESCRIPTION = ?,  ITEM_PRICE = ?, USER_ID = ? WHERE ITEM_ID = ?";
+                sql = "UPDATE items SET ITEM_NAME = ?, ITEM_DESCRIPTION = ?,  ITEM_PRICE = ? WHERE ITEM_ID = ?";
             }
 
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, i.getItem_name());
             pstmt.setString(2, i.getDescription());
             pstmt.setInt(3, i.getItem_price());
-            pstmt.setInt(4, i.getUser_id());
+            //pstmt.setInt(4, i.getUser_id());
             //pstmt.setBlob(5, null);
 
             if (i.getItem_id() > 0) {
-                pstmt.setInt(6, i.getItem_id());
+                pstmt.setInt(4, i.getItem_id());
+            }
+            else{
+                pstmt.setInt(4, 1);
             }
             pstmt.executeUpdate();
             conn.close();
@@ -109,6 +112,9 @@ public class itemController {
         } catch (SQLException ex) {
             Logger.getLogger(itemController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
+        itemobj = new items(0,"","",0,0,0);
+        getItems();
+        return "ViewProduct";
 
     }
 
@@ -124,6 +130,7 @@ public class itemController {
         } catch (SQLException ex) {
             Logger.getLogger(orderController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
+        getItems();
     }
 
     public JsonArray getAllJson() {
@@ -186,6 +193,12 @@ public class itemController {
         {
             return false;
         }
+    }
+    
+    public String edit(items i){
+        itemobj = i;
+        
+        return "ProductEdit";
     }
 
 }
