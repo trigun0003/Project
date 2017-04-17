@@ -129,6 +129,7 @@ public class itemController {
         } catch (SQLException ex) {
             Logger.getLogger(orderController.class.getClass().toString()).log(Level.SEVERE, null, ex);
         }
+        getItems();
     }
 
     public JsonArray getAllJson() {
@@ -191,6 +192,12 @@ public class itemController {
         {
             return false;
         }
+    }
+    
+    public String edit(items i){
+        itemobj = i;
+        
+        return "ProductEdit";
     }
 
 }
