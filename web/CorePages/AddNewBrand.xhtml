@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>BNBH E-Shopping | Admin </title>
         <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -136,24 +137,24 @@
                         <div class="control-group">
                             <label class="control-label" for="txtBrandName">Category Name</label>
                             <div class="controls">
-                                <h:inputText id="txtBrandName" class="form-control" value=""  h:placeholder="Brand Name" />
+                                <h:inputText id="txtBrandName" class="form-control" value="#{tagController.objtag.tag_name}"  h:placeholder="Brand Name" />
                             </div>
                         </div>
                         <br />
-                        <!-- Textarea -->
+                        <!-- Textarea 
                         <div class="control-group">
                             <label class="control-label" for="textarea">Description</label>
                             <div class="controls">
                                 <h:inputTextarea class="form-control" id="textarea" h:placeholder="Describe here..."/>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Button -->
                         <div class="control-group">
                             <label class="control-label"></label>
                             <div class="controls">
-                                <h:commandLink id="btnsave" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-save" ></i> SAVE</h:commandLink>
-                                <h:commandLink id="btncancel" type="submit" class="btn btn-primary btn-group-lg"><i class="fa fa-times"></i> CANCEL</h:commandLink>
+                                <h:commandLink id="btnsave" type="submit" class="btn btn-primary btn-group-lg" action="#{tagController.persistToDB(tagController.objtag)}"><i class="fa fa-save" ></i> SAVE</h:commandLink>
+                                <h:commandLink id="btncancel" type="submit" class="btn btn-primary btn-group-lg" action="AdminProfile.xhtml"><i class="fa fa-times"></i> CANCEL</h:commandLink>
                             </div>
                         </div>
                     </h:form>
@@ -168,23 +169,19 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                 
-                                <table class="table table-bordered table-hover table-striped table-responsive">
-                                    <tr>
-                                        <th>Category ID</th>
-                                        <th>Category Name</th>
-                                        <th>Description</th>
-                                    </tr>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Toys</td>
-                                        <td>Yellow color with Blue shade and black eyes duck.</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Toys</td>
-                                        <td>Yellow color with Blue shade and black eyes duck.</td>
-                                    </tr>
-                                </table>
+                                    <h:form>
+
+                                        <h:dataTable class="table table-bordered table-hover table-striped table-responsive" value="#{tagController.itemtag}" var="tag">
+                                        <h:column>
+                                            <f:facet name="header">Category ID</f:facet>
+                                            #{tag.tag_id}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Category Name</f:facet>
+                                                #{tag.tag_name}
+                                        </h:column>
+                                    </h:dataTable>
+                                    </h:form>
                                 
                             </div>
                         </div>

@@ -47,7 +47,7 @@ public class Login {
                 loggedIn = true;
                 currentUser = u;
                 if (u.getUser_type() == 1 || u.getUser_type() == 3) {
-                    nextPage = "index";
+                    nextPage = "IndexProfile";
                 } else if (u.getUser_type() == 2 || u.getUser_type() == 4) {
                     nextPage = "AdminHome";
                 }
