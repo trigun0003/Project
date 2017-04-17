@@ -6,7 +6,6 @@
 package faces;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import javax.json.Json;
 import javax.json.JsonObject;
 import org.junit.After;
@@ -18,11 +17,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author c0690651
+ * @author bellahuang
  */
-public class ordersTest {
+public class tagsTest {
     
-    public ordersTest() {
+    public tagsTest() {
     }
     
     @BeforeClass
@@ -40,19 +39,18 @@ public class ordersTest {
     @After
     public void tearDown() {
     }
-   
+
+    /**
+     * Test of toJson method, of class tags.
+     */
     @Test
-    public void testToJson() {       
-        Date today = new Date();
-        orders instance = new orders();
-        instance.setItem_id(1);
-        instance.setOrder_date(new java.sql.Date(today.getTime()));
-        instance.setOrder_number(1);
-        instance.setQuantity(5);
-        JsonObject expResult = Json.createObjectBuilder().add("order_number", 1).add("item_id", 1).add("order_date", new java.sql.Date(today.getTime()).toString()).add("quantity", 5).build();        
+    public void testToJson() {
+        tags instance = new tags();
+        instance.setTag_id(1);
+        instance.setTag_name("toys");
+        JsonObject expResult = Json.createObjectBuilder().add("tag_id", 1).add("tag_name", "toys").build();
         JsonObject result = instance.toJson();
         assertEquals(expResult, result);
-        
     }
     
 }

@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>BNBH E-Shopping | Admin </title>
         <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -141,13 +142,13 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="txtItem">Item ID</label>
                             <div class="controls">
-                                <h:inputText id="txtItem" class="form-control" value=""  h:placeholder="Item ID" />
+                                <h:inputText id="txtItem" class="form-control" value="#{orderController.currentOrder.item_id}"  h:placeholder="Item ID" />
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="txtQuantity">Quantity</label>
                             <div class="controls">
-                                <h:inputText id="txtQuantity" class="form-control" value=""  h:placeholder="Quantity" />
+                                <h:inputText id="txtQuantity" class="form-control" value="#{orderController.currentOrder.quantity}"  h:placeholder="Quantity" />
                             </div>
                         </div>
                         <br />
@@ -156,8 +157,8 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label"></label>
                             <div class="controls">
-                                <h:commandLink id="btnsave" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-save" ></i> SAVE</h:commandLink>
-                                <h:commandLink id="btncancel" type="submit" class="btn btn-primary btn-group-lg"><i class="fa fa-times"></i> CANCEL</h:commandLink>
+                                <h:commandLink id="btnsave" type="submit" class="btn btn-primary btn-group-lg"  action="#{orderController.persistToDB(orderController.currentOrder)}"><i class="fa fa-save" ></i> SAVE</h:commandLink>
+                                <h:commandLink id="btncancel" type="submit" class="btn btn-primary btn-group-lg" action="#{orderController.cancel()}"><i class="fa fa-times"></i> CANCEL</h:commandLink>
                             </div>
                         </div>
                     </h:form>
@@ -172,32 +173,27 @@ and open the template in the editor.
                         <div class="panel-body">
                             <div class="table-responsive">
                                 
-                                <table class="table table-bordered table-hover table-striped table-responsive">
-                                    <tr>
-                                        <th>Order Number</th>
-                                        <th>Item ID</th>
-                                        <th>Date</th>
-                                        <th>Quantity</th>
-                                    </tr>
-                                    <tr>
-                                        <th>001</th>
-                                        <td>201</td>
-                                        <td>04/10/17</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr>
-                                        <th>002</th>
-                                        <td>202</td>
-                                        <td>04/11/17</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <th>003</th>
-                                        <td>203</td>
-                                        <td>04/12/17</td>
-                                        <td>5</td>
-                                    </tr>
-                                </table>
+                                <h:form>
+
+                                    <h:dataTable class="table table-bordered table-hover table-striped table-responsive" value="#{orderController.orderdata}" var="orders">
+                                        <h:column>
+                                            <f:facet name="header">Order Number</f:facet>
+                                            #{orders.order_number}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Item ID</f:facet>
+                                                #{orders.item_id}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Date</f:facet>
+                                                #{orders.order_date}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Quantity</f:facet>
+                                                #{orders.quantity}
+                                        </h:column>
+                                    </h:dataTable>
+                                    </h:form>
                                 
                             </div>
                         </div>
