@@ -46,7 +46,7 @@ public class signUp {
                 pstmt.executeUpdate();
                 
                 userController.getUserFromDB();
-                nextPage = "LogIn";
+                nextPage = "index";
             } catch (SQLException ex) {
                 Logger.getLogger(signUp.class.getName()).log(Level.SEVERE, null, ex);
             }

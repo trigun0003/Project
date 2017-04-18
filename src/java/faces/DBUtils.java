@@ -17,7 +17,7 @@ import javax.enterprise.context.ApplicationScoped;
  *
  * @author c0687631
  */
-@ApplicationScoped
+
 public class DBUtils {
    
 
@@ -33,11 +33,7 @@ public class DBUtils {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String server = "djivor.me";
-        String username = "hebersucks";
-        String password = "sucks";
-        String database = username;
-        String jdbc = String.format("jdbc:mysql://%s/%s", server, database);
-        return DriverManager.getConnection(jdbc, username, password);
+        return DriverManager.getConnection("jdbc:mysql://djivor.me/hebersucks",
+                "hebersucks", "sucks");
     }
 }

@@ -41,20 +41,19 @@ and open the template in the editor.
             <nav class="navbar  navbar-inverse navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand  left" href="Index.html">BNBH E-Shopping</a>
+                        <a class="navbar-brand  left" href="/faces/CorePages/Index.html">BNBH E-Shopping</a>
                     </div>
                     <div>
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Product_1</a></li>
-                            <li><a href="#">Product_2 </a></li>
-                            <li><a href="#">Product_3</a></li>
-                            <li><a href="ContactUs.html">Contact Us</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">Toys </a></li>
+                            <li><a href="#">Books</a></li>
+                            <li><a href="ContactUs.xhtml">Contact Us</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="SignUp.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="LogIn.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="UserProfile.xhtml"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                         </ul>
                     </div>
                 </div>
@@ -78,31 +77,31 @@ and open the template in the editor.
                                 <br/>
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <h:inputText id="fname" class="form-control" value="#{contact.firstName}"/>
+                                        <h:inputText id="fname" class="form-control" value="#{contact.firstName}" h:placeholder="First Name" />
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <h:inputText  id="lname" class="form-control" value="#{contact.lastName}"/>
+                                        <h:inputText  id="lname" class="form-control" value="#{contact.lastName}" h:placeholder="Last Name"/>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <h:inputText id="email" class="form-control" value="#{contact.email}"/>
+                                        <h:inputText id="email" class="form-control" value="#{contact.email}" h:placeholder="Email"/>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <h:inputText  id="phone" class="form-control" value="#{contact.phone}"/>
+                                        <h:inputText  id="phone" class="form-control" value="#{contact.phone}" h:placeholder="Phone Number"/>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
-                                        <h:inputTextarea rows="3" id="message" class="form-control" value="#{contact.message}"/>
+                                        <h:inputTextarea rows="3" id="message" class="form-control" value="#{contact.message}" h:placeholder="Write your comment here..."/>
                                     </div>
                                 </div>
 

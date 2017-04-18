@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>BNBH E-Shopping | Admin </title>
+        <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+        <link href="assets/css/style.css" rel="stylesheet" />
+        <link href="assets/css/main-style.css" rel="stylesheet" />
+        <script src="../Scripts/jquery-2.1.4.js"></script>
+        <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="assets/scripts/siminta.js"></script>
+    </h:head>
+    <h:body>
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+                <!-- navbar-header -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="AdminHome.xhtml">
+                        <img src="../Images/photo.png" alt="" style="width: 40px; height: 40px; vertical-align: central;" /><span style="font-size: 26px; color: #fff;"> BNBH E-Shopping</span>
+                    </a>
+                </div>
+                <!-- end navbar-header -->
+                <!-- navbar-top-links -->
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-3x"></i>
+                        </a>
+                        <!-- dropdown user-->
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="AdminProfile.xhtml"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                            </li>
+
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                            </li>
+                        </ul>
+                        <!-- end dropdown-user -->
+                    </li>
+                    <!-- end main dropdown -->
+                </ul>
+                <!-- end navbar-top-links -->
+
+            </nav>
+
+            <nav class="navbar-default navbar-static-side" role="navigation"><!-- sidebar-collapse -->
+                <div class="sidebar-collapse"><!-- side-menu -->
+                    <ul class="nav" id="side-menu" >
+                        <li><!-- user image section-->
+                            <div class="user-section">
+                                <div class="user-section-inner">
+                                    <img src="../Images/user1.png" alt=""/>
+                                </div>
+                                <div class="user-info">
+                                    <div style="color:white;"><label ID="lbladmName" > Admin Panel</label></div>
+                                    <div class="user-text-online">
+                                        <span class="user-circle-online btn btn-success btn-circle "></span> Online
+                                    </div>
+                                </div>
+                            </div><!--end user image section-->
+                        </li>
+                      
+                        <li class="active">
+                            <a href="AdminHome.xhtml"><i class="fa  fa-home"></i> Home</a>
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-users"></i> Orders<span class="fa arrow"></span></a>
+                                 
+                            
+
+                            <ul class="nav nav-second-level  selected ">
+                                <li>
+                                    <a href="AllOrder.xhtml">All Orders</a>
+                                </li>
+                                <li>
+                                    <a href="MakeOrder.xhtml">Make Orders</a>
+                                </li>
+                                  <li>
+                                      <a href="ManageOrder.xhtml">Manage Orders</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-coffee"></i> Products - Category<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level selected">
+                                <li>
+                                    <a href="AddNewBrand.xhtml">Add Category</a>
+                                </li>
+                                <li>
+                                    <a href="AddNewProduct.xhtml">Add Products</a>
+                                </li>
+                                <li>
+                                    <a href="ViewProduct.xhtml">View Products</a>
+                                </li>
+                            </ul><!-- second-level-items -->
+                        </li>
+                        <li>
+                             <a href="#"><i class="fa fa-user"></i> Profile<span class="fa arrow"></span></a>
+                                
+                            
+                       
+                            <ul class="nav nav-second-level selected">
+                                <li >
+                                    <a href="AdminChangePassword.xhtml">Change Password</a>
+                                </li>
+                               
+                            </ul>
+                            <!-- second-level-items -->
+                        </li>
+                    </ul>
+                    <!-- end side-menu -->
+                </div>
+                <!-- end sidebar-collapse -->
+            </nav>
+            
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Admin Profile</h2>
+                    </div>
+                </div>
+                <div class="row col-lg-8">
+                    <h:form class="form-horizontal">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="lblFName">First Name</label>
+                            <div class="col-sm-9">
+                                <label id="lblFName" class="form-control" >Jason</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Text input -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="lblLName">Last Name</label>
+                            <div class="col-sm-9">
+                                <label id="lblLName" class="form-control">Statham</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Text input -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="lblLName">User Name</label>
+                            <div class="col-sm-9">
+                                <label id="lblUName" class="form-control">Jason007</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Text input -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="lblEmail">E-mail</label>
+                            <div class="col-sm-9">
+                                <label id="lblEmail" class="form-control">jason@gmail.com</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Text input -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="lblDate">Joining Date</label>
+                            <div class="col-sm-9">
+                                <label id="lblDate" class="form-control">04/17/2017</label>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-9">
+                                <h:commandLink id="btnEdit" type="submit" class="btn btn-primary btn-group-lg" ><i class="fa fa-edit" ></i> Edit</h:commandLink>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+
+            </div>
+            
+        </div>
+    </h:body>
+</html>
